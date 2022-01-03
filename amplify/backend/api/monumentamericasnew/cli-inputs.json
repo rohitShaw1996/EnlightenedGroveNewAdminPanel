@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    },
+    "conflictResolution": {},
+    "apiName": "monumentamericasnew",
+    "gqlSchemaPath": "E:\\rohit\\monumentamerica\\monumentamerica\\amplify\\backend\\api\\monumentamericasnew\\schema.graphql"
+  }
+}

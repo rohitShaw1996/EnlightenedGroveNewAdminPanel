@@ -1,0 +1,258 @@
+
+        <div class="page-wrapper" *ngIf="is_edit == 'false'; else elseBlock;">
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-9 align-self-center">
+                        <h4 class="page-title">{{page_heading}}</h4>
+                        <div class="d-flex align-items-center justify-content-start">
+                            
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript:void(0)">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{page_heading}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="container-fluid">
+                
+                        <div class="card card-body">
+                            <form class="form-horizontal mt-4 w-100" [formGroup]="createForm" (ngSubmit)="onUpload(createForm.value)">
+                            <div class="row">
+                           
+                                <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="example-email">Title <span class="help"></span></label>
+                                    <input type="text" id="example-email" formControlName="title" name="example-email" class="form-control" placeholder="">
+                                </div>
+                                </div>
+                               <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="example-email">Subject <span class="help"></span></label>
+                                    <input type="text" id="example-email" formControlName="subject" name="example-email" class="form-control" placeholder="">
+                                </div>
+                                </div>
+                                 
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="example-email">Keywords <span class="help"></span></label>
+                                        <div class="custom_tag">
+                                            <tag-input [placeholder]="'Add new keword'" [secondaryPlaceholder]="'Enter the Keyword'"  formControlName="keyword"></tag-input>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Organization Name</label>
+                                        <input class="form-control" type="text" list="inlineFormCustomSelect"  formControlName="organization_name" />
+                                        <datalist  id="inlineFormCustomSelect">
+                                            <option *ngFor="let item of companies">{{item}}</option>
+                                        </datalist>
+                                    </div>
+                                    </div>
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="example-email">Author <span class="help"></span></label>
+                                    <input type="text" id="example-email" name="example-email" class="form-control" placeholder="" formControlName="author">
+                                </div>
+                                </div>
+                                <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Language</label>
+                                    <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="language">
+                                        <option value ="" selected>Choose...</option>
+                                        <option >English</option>
+                                        <option >French</option>
+                                        <option >Spanish</option>
+                                        
+                                    </select>
+                                </div>
+                                </div>
+                                 <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Content Type</label>
+                                    <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="content_type">
+                                        <option value ="" selected>Choose...</option>
+                                        <option >Images</option>
+                                       
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                            <label>Upload file</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                    aria-describedby="inputGroupFileAddon01" (change)="handleFileInput($event.target.files)" >
+                                                  <label class="custom-file-label" for="inputGroupFile01" id="file_name">{{file_name}}</label>
+                                                
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                               
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="example-email">Description <span class="help"></span></label>
+                                        <!-- <input type="textarea" id="example-email" name="example-email" class="form-control" placeholder="" formControlName="description"> -->
+                                        <textarea name="" id="" cols="30"  class="form-control" placeholder="" formControlName="description"></textarea>
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                
+                                        <div class="form-group">
+                                            <label></label>
+                                            <div>
+                                        <mat-slide-toggle id="slide"  color="primary" formControlName="premium">Premium</mat-slide-toggle></div>
+                                       </div>
+                                    </div>
+
+                                    
+                                  
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                    <button type="submit" class="btn waves-effect waves-light float-right btn-rounded btn-info" [disabled]="is_btn_disabled"  >{{btn_text}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>   
+                        </div>  
+            </div>
+        </div>
+        
+        <ng-template #elseBlock>
+            <div class="page-wrapper" >
+                
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-9 align-self-center">
+                            <h4 class="page-title">{{page_heading}}</h4>
+                            <div class="d-flex align-items-center justify-content-start">
+                                
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="javascript:void(0)">Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{page_heading}}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+               
+                <div class="container-fluid">
+                   
+                    
+                            <div class="card card-body">
+                                <form class="form-horizontal mt-4 w-100" [formGroup]="createForm" (ngSubmit)="updateCourse(createForm.value)">
+                                <div class="row">
+                    
+                                    <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="example-email">Title <span class="help"></span></label>
+                                        <input type="text" id="example-email" formControlName="title" name="example-email" class="form-control" placeholder="" value="{{edit_object.title}}">
+                                    </div>
+                                    </div>
+                                   <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="example-email">Subject <span class="help"></span></label>
+                                        <input type="text" id="example-email" formControlName="subject" name="example-email" class="form-control" placeholder="" value={{edit_object.subject}} >
+                                    </div>
+                                    </div>
+                                     
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="example-email">Keywords <span class="help"></span></label>
+                                            <div class="custom_tag">
+                                                <tag-input [placeholder]="'Add new keword'" [secondaryPlaceholder]="'Enter the Keyword'"  formControlName="keyword" value={{edit_object.keyword}}></tag-input>
+                                           </div>
+                                        </div>
+                                    </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Organization Name</label>
+                                                <input class="form-control" type="text" list="inlineFormCustomSelect"  formControlName="organization_name" />
+                                                <datalist  id="inlineFormCustomSelect">
+                                                    <option *ngFor="let item of companies">{{item}}</option>
+                                                </datalist>
+                                            </div>
+                                            </div>
+                                  <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="example-email">Author <span class="help"></span></label>
+                                        <input type="text" id="example-email" name="example-email" class="form-control" placeholder="" formControlName="author" value={{edit_object.author}}>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Language</label>
+                                        <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="language">
+                                            <option value ="" selected>Choose...</option>
+                                            <option >English</option>
+                                            <option >French</option>
+                                            <option >Spanish</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                     <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Content Type</label>
+                                        <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="content_type">
+                                            <option value ="" selected>Choose...</option>
+                                            <option >Images</option>
+                                            
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                                <label>Upload file</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                        aria-describedby="inputGroupFileAddon01" (change)="handleFileInput($event.target.files)" >
+                                                      <label class="custom-file-label" for="inputGroupFile01" id="file_name">{{file_name}}</label>
+                                            </div>
+                                        </div>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="example-email">Description <span class="help"></span></label>
+                                            <!-- <input type="textarea" id="example-email" name="example-email" class="form-control" placeholder="" formControlName="description"> -->
+                                            <textarea name="" id="" cols="30"  class="form-control" placeholder="" formControlName="description" value={{edit_object.description}} >{{edit_object.description}}</textarea>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                
+                                            <div class="form-group">
+                                                <label></label>
+                                                <div>
+                                            <mat-slide-toggle id="slide" checked color="primary" formControlName="premium">Premium</mat-slide-toggle></div>
+                                           </div>
+                                        </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                        <button type="submit" class="btn waves-effect waves-light float-right btn-rounded btn-info" [disabled]="is_edit_btn_disabled"  >{{edit_btn_text}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>   
+                            </div>
+                </div>
+            </div>
+          </ng-template>

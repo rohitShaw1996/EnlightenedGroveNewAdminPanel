@@ -1,0 +1,36 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+          
+                
+                
+                <li class="sidebar-item active"  routerLink="/dashboard" routerLinkActive="router-link-active">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"  aria-expanded="false">
+                        <i class="mdi mdi-av-timer"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item"   (click) ="uploadCourse('upload-course')">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false">
+                        <i class="mdi mdi-book"></i>
+                        <span class="hide-menu">Upload Course</span>
+                    </a>
+                </li>
+               
+               
+                <li class="sidebar-item"   (click) ="logout()">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false">
+                        <i class="mdi mdi-logout"></i>
+                        <span class="hide-menu">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

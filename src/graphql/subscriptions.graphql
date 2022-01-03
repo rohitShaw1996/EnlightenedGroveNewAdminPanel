@@ -1,0 +1,76 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUsers {
+  onCreateUsers {
+    id
+    login_type
+    full_name
+    email
+    phone
+    password
+    otp
+    email_validation_token
+    email_validation_token_timestamp
+    forgot_password_token
+    forgot_password_token_timestamp
+    is_email_valid
+    is_phone_valid
+    status
+    deleted
+    created
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUsers {
+  onUpdateUsers {
+    id
+    login_type
+    full_name
+    email
+    phone
+    password
+    otp
+    email_validation_token
+    email_validation_token_timestamp
+    forgot_password_token
+    forgot_password_token_timestamp
+    is_email_valid
+    is_phone_valid
+    status
+    deleted
+    created
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUsers {
+  onDeleteUsers {
+    id
+    login_type
+    full_name
+    email
+    phone
+    password
+    otp
+    email_validation_token
+    email_validation_token_timestamp
+    forgot_password_token
+    forgot_password_token_timestamp
+    is_email_valid
+    is_phone_valid
+    status
+    deleted
+    created
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}

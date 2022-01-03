@@ -1,0 +1,164 @@
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-9 align-self-center">
+                    <h4 class="page-title">Course Details</h4>
+                    <div class="d-flex align-items-center justify-content-start">
+                        
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/dashboard">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Course Details</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-3 align-self-center">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span style="border-radius: 20px 0 0 20px; background: #fff;" class="input-group-text pt-0 pb-0" id="basic-addon1"><i class="mdi mdi-magnify font-20"></i></span>
+                        </div>
+                        <input style="border-radius: 0 20px 20px 0;" type="text" class="form-control" placeholder="Search.."  aria-describedby="basic-addon1" [(ngModel)] ="nameSearch" (keyup)="inputChange()">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+                <div class="modal fade" id="addunitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{model_title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
+                        <div class="form-group">
+                            <label for="example-email">Unit No <span class="help"></span></label>
+                            <input type="text" id="example-email" name="example-email" class="form-control" placeholder=""  formControlName="unit_no">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="example-email">Unit Title <span class="help"></span></label>
+                            <input type="text" id="example-email" name="example-email" class="form-control" placeholder="" formControlName="title">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Language</label>
+                            <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="language">
+                                <option selected="">Choose...</option>
+                                <option >English</option>
+                                <option >Hindi</option>
+                                <option >Spanish</option>
+                            </select>
+                        </div>
+
+                    
+                        <div class="form-group">
+                            <label for="example-email">Keywords <span class="help"></span></label>
+                            <div class="custom_tag">
+                                <tag-input [placeholder]="'Add new keword'" [secondaryPlaceholder]="'Enter the Keyword'"  formControlName="keyword" ></tag-input>
+                           </div>
+                        </div>
+                    
+
+                        <div class="form-group">
+                            <label>Content Type</label>
+                            <select class="custom-select col-12" id="inlineFormCustomSelect" formControlName="content_type">
+                                <option selected="">Choose...</option>
+                                <option >PDF</option>
+                                <option >IMAGE</option>
+                                <option >Video</option>
+                            </select>
+                        </div>       
+                        <div class="form-group">
+                            <div class="custom-file ">
+                              <input type="file" class="custom-file-input" 
+                                (change)="handleFileInput($event.target.files)"  >
+                              <label class="custom-file-label" for="inputGroupFile01" id="unit_file_name">{{unit_file_name}}</label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                          
+                          
+                            <button type="submit" class="btn btn-info float-right border" [disabled]="is_btn_disabled"  >{{btn_text}}</button>
+                        </div>
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="float-left">{{course_name}}</h4>
+                                <button type="button"   class="btn waves-effect waves-light float-right btn-rounded btn-info" (click)="openModal()"><i class="fa fas fa-plus"></i> Add Unit</button>
+                              
+                                <div class="table-responsive">
+                                    <table class="table v-middle">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">Course Unit No.</th>
+                                                <th class="border-top-0">Unit Title</th>
+                                                <th class="border-top-0">Enable/Disable</th>
+                                                <th class="border-top-0">Action</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                       
+                                        <tbody *ngFor="let content of (content_units | filter : nameSearch) as result">
+                                            
+                                            
+
+                                           
+                                            
+                                            <tr>
+                                                <td><h5>{{content.unit_no}}</h5></td>
+                                                <td><h4><a href="javascript:void(0)" class="link">{{content.title}}</a></h4></td>
+                                                <td>
+                                                    <label class="switch mb-0">
+                                                        <div *ngIf="content.status ; else other_content">
+                                                            <input type="checkbox" checked (click)="updateUnitStatus(content.status,content.id)" [disabled]="is_disabled">
+                                                            <span class="slider"></span>
+                                                            </div>
+                                                            <ng-template #other_content>
+                                                                <input type="checkbox"  (click)="updateUnitStatus(content.status,content.id)" [disabled]="is_disabled">
+                                                                <span class="slider"></span>
+                                                            </ng-template>
+                                                      </label>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="text-info mr-3"  (click)="updateUnit(content.id)"><i class=" fas fa-edit"></i></a><a href="javascript:void(0)" class="text-danger" [swal]="deleteSwal"><i class="far fa-trash-alt remove-note"></i>
+                                                    <swal #deleteSwal title="Delete?" text="This unit will be deleted permanently" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUnit(content.id)"></swal>
+
+                                                    </a></td>
+                                                    
+                                            </tr>
+                                        </tbody>    
+                                    </table>
+                                    <div *ngIf="showText == '0'">
+                                    <div *ngIf="(content_units | filter: nameSearch).length === 0" class="justify-content-center mx-auto" style="text-align: center;">
+                                        <h3> No unit found </h3>
+                                     </div>
+                                     
+                                    </div>
+                                    <div *ngIf="content_units.length == 0 && showMe "  class="justify-content-center mx-auto" style="text-align: center;">
+                                        <h3>No data found</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+              </div>
+        </div>
+<div class="chat-windows"></div>
